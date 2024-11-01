@@ -1,0 +1,25 @@
+[build]
+  # The directory to deploy (this is usually the folder generated after the build process)
+  publish = "dist"  # Replace with your build folder, e.g., "build" or "public"
+  command = "npm run build"  # Command to build your project, e.g., "npm run build" or "yarn build"
+
+[context.production]
+  # Environment variables for production
+  environment = { 
+    NODE_ENV = "production",
+    API_URL = "https://api.yourapp.com"  # Replace with your production API endpoint
+  }
+
+[context.deploy-preview]
+  # Settings for deploy previews (e.g., PR builds)
+  command = "npm run build"  # Can have a different build command for previews
+
+[context.branch-deploy]
+  # Branch-specific deploys
+  command = "npm run build"  # You can customize build for specific branches
+
+[[redirects]]
+  # Redirect all routes to index.html (for Single Page Applications)
+  from = "/*"
+  to = "/index.html"
+  status = 200
